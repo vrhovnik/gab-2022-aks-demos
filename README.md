@@ -24,7 +24,7 @@ source code.
 You will need to have [Azure Subscription](https://azure.microsoft.com/en-us/free/) and a
 working [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/#overview) instance.
 You can use the [AKS Deployment Helper](https://azure.github.io/AKS-Construction/) or follow the
-script [here](./src/GAB2022/setup-script.ps1).
+script [here](./src/GAB2022/0-aks-basic-setup-script.ps1).
 
 To work with the command line and to test out functionalities you will need to
 have [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest). To ease up the
