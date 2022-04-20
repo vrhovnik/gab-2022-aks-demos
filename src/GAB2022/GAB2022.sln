@@ -2,7 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Demo-Initial", "0-Demo-Initial", "{61259D48-7071-4EC5-A6FE-E9212B5D7B63}"
 	ProjectSection(SolutionItems) = preProject
-		0-ask-basic-setup-script.ps1 = 0-ask-basic-setup-script.ps1
+		0-aks-basic-setup-script.ps1 = 0-aks-basic-setup-script.ps1
+		1-acr-basic-setup-script.ps1 = 1-acr-basic-setup-script.ps1
+		1-acr-test.yaml = 1-acr-test.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{5A2658FE-E901-4ACC-80E2-97D5DD9E9B49}"

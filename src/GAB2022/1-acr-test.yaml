@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+  namespace: test
+  labels:
+    app: test-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test-hello
+  template:
+    metadata:
+      labels:
+        app: test-hello
+    spec:
+      containers:
+        - name: test-hello
+          image: <acr-name>.azurecr.io/hello-world:latest
+          ports:
+            - containerPort: 80
