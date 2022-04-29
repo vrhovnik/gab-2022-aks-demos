@@ -1,0 +1,30 @@
+﻿@page "{newsId}"
+@model Sample.Web.NewsletterSubscription.Pages.News.DetailsPageModel
+
+@{
+    var newsTitle = Model.CurrentNews.Title;
+    ViewData["Title"] = "News  " + newsTitle;
+}
+
+@section navigation
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-page="/Info/Index">Info</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-page="/News/View">News</a>
+            </li>
+            <li aria-current="page"
+                class="breadcrumb-item active">
+                @newsTitle
+            </li>
+        </ol>
+    </nav>
+}
+
+<h1>@newsTitle</h1>
+<p class="text-info">@Model.CurrentNews.Description at @Model.CurrentNews.DateCreated.ToShortDateString()</p>
+
+<p>@Model.CurrentNews.Content</p>

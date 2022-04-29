@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (TempData["MessageInfo"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["MessageInfo"]
+    </div>
+}
+<h1 class="display-4">Welcome to newsletter subscription simple web page</h1>
+<p class="text-info">This is a demo for GAB 2022 session to demonstrate usage.</p>
+<p class="mb-1">Click below to select newsletter and subscribe to get rss feeds. Click on news reading option in menu to get the news.</p>
+
+<form method="post">
+    <div class="input-group">
+        <select aria-label="Newsletters"
+                class="form-select"
+                id="ddlNewsletters"
+                name="ddlNewsletters">
+            @foreach (var newsletter in Model.Newsletters)
+            {
+                <option value="@newsletter.NewsletterId">@newsletter.Title</option>
+            }
+        </select>
+        <button class="btn btn-outline-secondary"
+                type="submit">
+            Subscribe
+        </button>
+    </div>
+</form>

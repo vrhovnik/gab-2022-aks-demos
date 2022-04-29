@@ -1,0 +1,49 @@
+﻿@page "{query?}"
+@model Sample.Web.NewsletterSubscription.Pages.News.ViewPageModel
+
+@{
+    ViewData["Title"] = "News list";
+}
+
+<h1>News list</h1>
+<p>Use below form to search through news</p>
+<form method="get">
+    <div class="input-group mb-3">
+        <input aria-describedby="btnSearch"
+               aria-label="search criteria"
+               asp-for="Query"
+               class="form-control"
+               placeholder="enter search keyword"
+               type="text">
+        <button class="btn btn-outline-secondary"
+                id="btnSearch"
+                type="button">
+            Search
+        </button>
+    </div>
+</form>
+
+@if (Model.NewsList.Any())
+{
+    <table class="table">
+        <tr>
+            @foreach (var currentNews in Model.NewsList)
+            {
+                <td>
+                    @currentNews.Title
+                </td>
+                <td>
+                    @currentNews.NewsletterId
+                </td>
+                <td>
+                    @currentNews.DateCreated.ToShortDateString()
+                </td>
+            }
+        </tr>
+        <caption>List of news based on <b>@Model.Query</b></caption>
+    </table>
+}
+else
+{
+    <p>No news found</p>
+}

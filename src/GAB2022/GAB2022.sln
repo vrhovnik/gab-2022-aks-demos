@@ -13,6 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{F3693561
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "First-Aks-Cli-Rest", "First-Aks-Cli-Rest\First-Aks-Cli-Rest.csproj", "{4E155D34-B961-43F2-88E8-598690B0C731}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Second-Aks-Cli-Managed", "Second-Aks-Cli-Managed\Second-Aks-Cli-Managed.csproj", "{4B7B9A14-06B6-4684-A500-B03E7AB8FC73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Web.NewsletterSubscription", "Sample.Web.NewsletterSubscription\Sample.Web.NewsletterSubscription.csproj", "{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{0F4FAA8C-DA46-414D-B425-7FEC0286B06D}"
+	ProjectSection(SolutionItems) = preProject
+		NewsletterSubscriptionDockerfile = NewsletterSubscriptionDockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,11 +29,21 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4E155D34-B961-43F2-88E8-598690B0C731} = {F3693561-4CF2-4E59-AD5C-9B542A19D546}
+		{4B7B9A14-06B6-4684-A500-B03E7AB8FC73} = {F3693561-4CF2-4E59-AD5C-9B542A19D546}
+		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440} = {F3693561-4CF2-4E59-AD5C-9B542A19D546}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4E155D34-B961-43F2-88E8-598690B0C731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E155D34-B961-43F2-88E8-598690B0C731}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E155D34-B961-43F2-88E8-598690B0C731}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E155D34-B961-43F2-88E8-598690B0C731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7B9A14-06B6-4684-A500-B03E7AB8FC73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7B9A14-06B6-4684-A500-B03E7AB8FC73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7B9A14-06B6-4684-A500-B03E7AB8FC73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7B9A14-06B6-4684-A500-B03E7AB8FC73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

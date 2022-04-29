@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Pod
+metadata:
+  name: store-test
+spec:
+  containers:
+    - name: store
+      image: <acr-name>.azurecr.io/newsletter-subscribe:v1
+      ports:
+        - containerPort: 80
+          protocol: TCP
+          name: http
