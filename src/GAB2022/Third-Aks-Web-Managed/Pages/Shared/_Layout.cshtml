@@ -4,14 +4,10 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0"
           name="viewport" />
-    <title>@ViewData["Title"] - Third_Aks_Web_Managed</title>
+    <title>@ViewData["Title"] - GAB 2022</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css"
           rel="stylesheet" />
-    <link asp-append-version="true"
-          href="~/css/site.css"
-          rel="stylesheet" />
-    <link asp-append-version="true"
-          href="~/Third_Aks_Web_Managed.styles.css"
+    <link href="~/css/site.css"
           rel="stylesheet" />
 </head>
 <body>
@@ -21,7 +17,7 @@
             <a asp-area=""
                asp-page="/Index"
                class="navbar-brand">
-                Third_Aks_Web_Managed
+                GAB 2022 AKS example 
             </a>
             <button aria-controls="navbarSupportedContent"
                     aria-expanded="false"
@@ -38,7 +34,14 @@
                         <a asp-area=""
                            asp-page="/Index"
                            class="nav-link text-dark">
-                            Home
+                            Demo information
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area=""
+                           asp-page="/Index"
+                           class="nav-link text-dark">
+                            Dashboard
                         </a>
                     </li>
                     <li class="nav-item">
@@ -62,18 +65,11 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2022 - Third_Aks_Web_Managed - <a asp-area=""
-                                                 asp-page="/Privacy">
-            Privacy
-        </a>
+        GAB 2022
     </div>
 </footer>
-
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script asp-append-version="true"
-        src="~/js/site.js"></script>
-
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
