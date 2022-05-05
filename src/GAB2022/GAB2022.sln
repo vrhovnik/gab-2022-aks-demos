@@ -20,7 +20,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{0F4FAA8C-DA46-414D-B425-7FEC0286B06D}"
 	ProjectSection(SolutionItems) = preProject
 		NewsletterSubscriptionDockerfile = NewsletterSubscriptionDockerfile
+		ThirdAksExampleDockerfile = ThirdAksExampleDockerfile
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Third-Aks-Web-Managed", "Third-Aks-Web-Managed\Third-Aks-Web-Managed.csproj", "{8FB4811D-26B1-469C-BB56-011506253277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +34,7 @@ Global
 		{4E155D34-B961-43F2-88E8-598690B0C731} = {F3693561-4CF2-4E59-AD5C-9B542A19D546}
 		{4B7B9A14-06B6-4684-A500-B03E7AB8FC73} = {F3693561-4CF2-4E59-AD5C-9B542A19D546}
 		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440} = {F3693561-4CF2-4E59-AD5C-9B542A19D546}
+		{8FB4811D-26B1-469C-BB56-011506253277} = {F3693561-4CF2-4E59-AD5C-9B542A19D546}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4E155D34-B961-43F2-88E8-598690B0C731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -45,5 +49,9 @@ Global
 		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AC1A860-0FFF-44C2-88D6-E1ADD42B7440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB4811D-26B1-469C-BB56-011506253277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB4811D-26B1-469C-BB56-011506253277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB4811D-26B1-469C-BB56-011506253277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB4811D-26B1-469C-BB56-011506253277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
