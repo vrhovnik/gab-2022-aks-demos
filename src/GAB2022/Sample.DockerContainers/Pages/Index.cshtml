@@ -1,0 +1,23 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Getting information from registry on Azure</h1>
+
+<p>List of images form that registry</p>
+
+<table class="table">
+    @foreach (var image in Model.DockerImages)
+    {
+        <tr>
+            <td>
+                @image.Id
+            </td>
+            <td>
+                @image.Name
+            </td>
+        </tr>
+    }
+</table>

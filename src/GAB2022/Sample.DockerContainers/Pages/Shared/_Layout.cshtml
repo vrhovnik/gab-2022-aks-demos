@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0"
           name="viewport" />
-    <title>@ViewData["Title"] - GAB 2022</title>
+    <title>@ViewData["Title"] - Sample.DockerContainers</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css"
           rel="stylesheet" />
     <link href="~/css/site.css"
@@ -17,42 +17,34 @@
             <a asp-area=""
                asp-page="/Index"
                class="navbar-brand">
-                GAB 2022 AKS example 
+                Sample.DockerContainers
             </a>
             <button aria-controls="navbarSupportedContent"
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                     class="navbar-toggler"
-                    data-bs-target=".navbar-collapse"
-                    data-bs-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    data-toggle="collapse"
                     type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
                         <a asp-area=""
-                           asp-page="/Info/Index"
+                           asp-page="/Index"
                            class="nav-link text-dark">
-                            Demo information
+                            Home
                         </a>
                     </li>
                     <li class="nav-item">
                         <a asp-area=""
-                           asp-page="/Kubek/Dashboard"
-                           class="nav-link text-dark">
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area=""
-                           asp-page="/Info/Privacy"
+                           asp-page="/Privacy"
                            class="nav-link text-dark">
                             Privacy
                         </a>
                     </li>
                 </ul>
-                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
@@ -66,11 +58,19 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        GAB 2022 Sample demo application
+        &copy; 2022 - Sample.DockerContainers -
+        <a asp-area=""
+           asp-page="/Privacy">
+            Privacy
+        </a>
     </div>
 </footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-@await RenderSectionAsync("Scripts", required: false)
+<script asp-append-version="true"
+        src="~/js/site.js"></script>
+
+@RenderSection("Scripts", required: false)
 </body>
 </html>
