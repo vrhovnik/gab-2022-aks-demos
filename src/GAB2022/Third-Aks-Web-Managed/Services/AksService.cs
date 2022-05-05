@@ -41,8 +41,9 @@ public class AksService : IKubernetesService
     {
         try
         {
-            logger.LogInformation("Getting config file from Azure Storage");
-            var stream = await storageWorker.DownloadFileAsync(kubekOptions.ConfigFileName);
+            var kubeConfigFile = kubekOptions.ConfigFileName;
+            logger.LogInformation("Getting config file from Azure Storage {0}", kubeConfigFile);
+            var stream = await storageWorker.DownloadFileAsync(kubeConfigFile);
             logger.LogInformation("Getting cluster information - client - LoadBasedOnConfigurationAsync");
             var config =  KubernetesClientConfiguration.BuildConfigFromConfigFile(stream);
             var client = new Kubernetes(config);

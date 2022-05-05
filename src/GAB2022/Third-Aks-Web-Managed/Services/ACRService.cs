@@ -1,4 +1,5 @@
 using Docker.DotNet;
+using Docker.DotNet.BasicAuth;
 using Docker.DotNet.Models;
 using Microsoft.Azure.Management.ContainerRegistry.Fluent;
 using Microsoft.Azure.Management.Fluent;
@@ -45,26 +46,32 @@ public class ACRService : IContainerRegistryService
     {
         var list = new List<DockerImageViewModel>();
         logger.LogInformation("Getting docker client to call VM to get images");
-            
+
         try
         {
-            using var client = new DockerClientConfiguration(new Uri(azureAdOptions.DockerHostUrl))
+            var registry = await GetRegistryRepositoriesAsync(containerRegistryName);
+            var credRegistry = await registry.GetCredentialsAsync();
+            
+            var credentials =
+                new BasicAuthCredentials(credRegistry.Username, credRegistry.AccessKeys[AccessKeyType.Primary]);
+
+            using var client = new DockerClientConfiguration(new Uri(registry.LoginServerUrl), credentials)
                 .CreateClient();
+
             var listImages = await client.Images.ListImagesAsync(
-                new ImagesListParameters {All = true});
+                new ImagesListParameters { All = true });
+
             logger.LogInformation("Retrieved client, doing list images");
             foreach (var img in listImages)
             {
-                if (img.RepoTags != null && img.RepoTags.Count > 0)
-                {
-                    var name = img.RepoTags[0];
-                    if (!name.Contains("none"))
-                        list.Add(new DockerImageViewModel
-                        {
-                            Id = img.ID,
-                            Name = name
-                        });
-                }
+                if (img.RepoTags is not { Count: > 0 }) continue;
+                var name = img.RepoTags[0];
+                if (!name.Contains("none"))
+                    list.Add(new DockerImageViewModel
+                    {
+                        Id = img.ID,
+                        Name = name
+                    });
             }
         }
         catch (Exception e)
@@ -73,7 +80,6 @@ public class ACRService : IContainerRegistryService
         }
 
         logger.LogInformation("Listening images done");
-
         return list;
     }
 }

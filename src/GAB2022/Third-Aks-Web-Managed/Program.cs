@@ -15,7 +15,13 @@ builder.Services.Configure<StorageOptions>(builder.Configuration.GetSection("Sto
 builder.Services.Configure<SendGridOptions>(builder.Configuration.GetSection("SendGridOptions"));
 builder.Services.Configure<KubekOptions>(builder.Configuration.GetSection("KubekOptions"));
 
-//core services
+//custom services
+builder.Services.AddScoped<IKubernetesService, AksService>();
+builder.Services.AddScoped<IKubernetesObjects, AKSObjectsService>();
+builder.Services.AddScoped<IContainerRegistryService, ACRService>();
+builder.Services.AddScoped<IKubernetesCrud, AKSCrudService>();
+
+//core framework services
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 builder.Services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
 builder.Services.AddHttpContextAccessor();
@@ -30,14 +36,20 @@ var sendGridSettings = builder.Configuration.GetSection("SendGridOptions").Get<S
 builder.Services.AddScoped<IEmailService, SendGridEmailSender>(
     _ => new SendGridEmailSender(sendGridSettings.ApiKey));
 
-var app = builder.Build();
 builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
     options.Conventions.AddPageRoute("/Info/Index", ""));
+
+var app = builder.Build();
 
 if (!app.Environment.IsDevelopment()) app.UseExceptionHandler("/Error");
 
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
-app.MapRazorPages();
+app.UseAuthentication();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllers();
+});
 app.Run();
