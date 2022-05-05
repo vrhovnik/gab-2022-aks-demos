@@ -7,7 +7,6 @@ using Third_Aks_Web_Managed.Models;
 
 namespace Third_Aks_Web_Managed.Pages.Kubek;
 
-[Authorize]
 public class CreateNamespacePodPageModel : PageModel
 {
     private readonly IContainerRegistryService containerRegistryService;

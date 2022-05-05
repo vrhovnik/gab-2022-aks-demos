@@ -5,7 +5,6 @@ using Third_Aks_Web_Managed.Interfaces;
 
 namespace Third_Aks_Web_Managed.Pages.Kubek;
 
-[Authorize]
 public class StorePageModel : PageModel
 {
     private readonly ILogger<StorePageModel> logger;
@@ -19,7 +18,7 @@ public class StorePageModel : PageModel
 
     public void OnGet()
     {
-        logger.LogInformation("Loaded scenario");
+        logger.LogInformation("Loaded scenario {0}", DateTime.Now);
     }
 
     public async Task<RedirectToPageResult> OnPostCreateScenarioAsync()

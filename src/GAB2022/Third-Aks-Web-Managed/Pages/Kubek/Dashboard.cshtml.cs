@@ -5,7 +5,6 @@ using Third_Aks_Web_Managed.Interfaces;
 
 namespace Third_Aks_Web_Managed.Pages.Kubek;
 
-[Authorize]
 public class DashboardPageModel : PageModel
 {
     private readonly IKubernetesService kubernetesService;

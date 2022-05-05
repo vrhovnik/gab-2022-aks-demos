@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Graph.ExternalConnectors;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Third_Aks_Web_Managed.Interfaces;
@@ -16,6 +20,10 @@ builder.Services.Configure<SendGridOptions>(builder.Configuration.GetSection("Se
 builder.Services.Configure<KubekOptions>(builder.Configuration.GetSection("KubekOptions"));
 
 //custom services
+var storageSettings = builder.Configuration.GetSection("StorageOptions").Get<StorageOptions>();
+builder.Services.AddScoped<IStorageWorker, AzureStorageWorker>(
+    _ => new AzureStorageWorker(storageSettings.ConnectionString, storageSettings.Container));
+
 builder.Services.AddScoped<IKubernetesService, AksService>();
 builder.Services.AddScoped<IKubernetesObjects, AKSObjectsService>();
 builder.Services.AddScoped<IContainerRegistryService, ACRService>();
@@ -28,16 +36,26 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddApplicationInsightsTelemetry();
 
 //authentication support with Azure AD
-builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration);
-builder.Services.AddControllersWithViews().AddMicrosoftIdentityUI();
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(builder.Configuration);
+//builder.Services.AddMicrosoftIdentityWebAppAuthentication(builder.Configuration);
+//builder.Services.AddControllersWithViews().AddMicrosoftIdentityUI();
 
 //send grid options
 var sendGridSettings = builder.Configuration.GetSection("SendGridOptions").Get<SendGridOptions>();
 builder.Services.AddScoped<IEmailService, SendGridEmailSender>(
     _ => new SendGridEmailSender(sendGridSettings.ApiKey));
 
-builder.Services.AddRazorPages().AddRazorPagesOptions(options =>
-    options.Conventions.AddPageRoute("/Info/Index", ""));
+builder.Services.AddRazorPages()
+    .AddRazorPagesOptions(options =>
+        options.Conventions.AddPageRoute("/Info/Index", ""))
+    .AddMvcOptions(options =>
+    {
+        var policy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+        options.Filters.Add(new AuthorizeFilter(policy));
+    }).AddMicrosoftIdentityUI();
 
 var app = builder.Build();
 

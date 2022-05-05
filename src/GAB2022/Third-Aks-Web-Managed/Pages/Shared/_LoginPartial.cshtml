@@ -2,16 +2,26 @@
     @if (User.Identity.IsAuthenticated)
     {
         <li class="nav-item">
-            <span class="navbar-text text-dark">Hello @User.Identity.Name!</span>
+            <a class="nav-link text-dark"> Hello <b>@User.Identity.Name!</b></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign out</a>
+            <a asp-action="SignOut"
+               asp-area="MicrosoftIdentity"
+               asp-controller="Account"
+               class="nav-link text-dark">
+                Sign out
+            </a>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a>
+            <a asp-action="SignIn"
+               asp-area="MicrosoftIdentity"
+               asp-controller="Account"
+               class="nav-link text-dark">
+                Sign in
+            </a>
         </li>
     }
 </ul>
