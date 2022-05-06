@@ -51,9 +51,10 @@ namespace Sample.DockerContainers.Pages
             try
             {
                 var credRegistry = await registry.GetCredentialsAsync();
-            
+                //appropriate RBAC needs to be 
                 var dockerCredentials =
-                    new BasicAuthCredentials(credRegistry.Username, credRegistry.AccessKeys[AccessKeyType.Primary]);
+                    new BasicAuthCredentials(credRegistry.Username, 
+                        credRegistry.AccessKeys[AccessKeyType.Primary]);
 
                 using var client = new DockerClientConfiguration(new Uri(registry.LoginServerUrl), dockerCredentials)
                     .CreateClient();

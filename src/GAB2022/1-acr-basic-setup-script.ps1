@@ -27,10 +27,13 @@ az aks update -n "myAKSCluster" -g "myResourceGroup" --attach-acr "<acr-name>"
 # test out functionality
 az aks get-credentials -g "myResourceGroup" -n "myAKSCluster"
 
+# check, if your cluster can pull from ACR
+az aks check-acr --name MyManagedCluster --resource-group MyResourceGroup --acr myacr.azurecr.io
+
 # if you don't have kubectl installed, do it via az cli
 az aks install-cli
 
-# create namespace
+# create namespace to test, if it works inside cluster
 kubectl create namespace test
 
 # change values in this file 
