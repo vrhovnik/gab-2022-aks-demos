@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Third_Aks_Web_Managed.Helpers;
@@ -22,9 +21,16 @@ public class CreateNamespacePodPageModel : PageModel
         this.logger = logger;
     }
 
-    public async Task OnGet()
+    [BindProperty] public string NamespaceName { get; set; }
+    [BindProperty] public string PodName { get; set; }
+    [TempData] public string InfoText { get; set; }
+    [BindProperty] public List<DockerImageViewModel> Images { get; set; }
+
+    public void OnGet()
     {
-        var list = await containerRegistryService.GetImagesForRepositoryAsync("acontainers");
+        logger.LogInformation("Loading containers");
+        var list = containerRegistryService.GetPredefinedImages();
+        logger.LogInformation("Loaded list of {0} images", list.Count);
         Images = list;
     }
 
@@ -59,10 +65,4 @@ public class CreateNamespacePodPageModel : PageModel
         logger.LogInformation("Pod, namespace created!");
         return RedirectToPage("/Kubek/ListNamespaces");
     }
-
-
-    [BindProperty] public string NamespaceName { get; set; }
-    [BindProperty] public string PodName { get; set; }
-    [TempData] public string InfoText { get; set; }
-    [BindProperty] public List<DockerImageViewModel> Images { get; set; }
 }

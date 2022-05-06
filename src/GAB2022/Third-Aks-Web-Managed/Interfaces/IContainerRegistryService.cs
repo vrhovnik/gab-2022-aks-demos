@@ -7,4 +7,5 @@ public interface IContainerRegistryService
 {
     Task<IRegistry> GetRegistryRepositoriesAsync(string containerRegistryName);
     Task<List<DockerImageViewModel>> GetImagesForRepositoryAsync(string containerRegistryName);
+    List<DockerImageViewModel> GetPredefinedImages();
 }

@@ -13,9 +13,9 @@ namespace Third_Aks_Web_Managed.Services;
 
 public class ACRService : IContainerRegistryService
 {
-    private readonly ILogger<ACRService> logger;
     private readonly IAzure azure;
     private readonly AzureAdOptions azureAdOptions;
+    private readonly ILogger<ACRService> logger;
 
     public ACRService(IOptions<AzureAdOptions> azureAdOptionsValue, ILogger<ACRService> logger)
     {
@@ -51,7 +51,7 @@ public class ACRService : IContainerRegistryService
         {
             var registry = await GetRegistryRepositoriesAsync(containerRegistryName);
             var credRegistry = await registry.GetCredentialsAsync();
-            
+
             var credentials =
                 new BasicAuthCredentials(credRegistry.Username, credRegistry.AccessKeys[AccessKeyType.Primary]);
 
@@ -80,6 +80,39 @@ public class ACRService : IContainerRegistryService
         }
 
         logger.LogInformation("Listening images done");
+        return list;
+    }
+
+    public List<DockerImageViewModel> GetPredefinedImages()
+    {
+        var list = new List<DockerImageViewModel>
+        {
+            new()
+            {
+                Id = "acontainers.azurecr.io/ew/web:v1",
+                Name = "acontainers.azurecr.io/ew/web:v1"
+            },
+            new()
+            {
+                Id = "acontainers.azurecr.io/ew/web:v2",
+                Name = "acontainers.azurecr.io/ew/web:v2"
+            },
+            new()
+            {
+                Id = "acontainers.azurecr.io/ew/status:v2",
+                Name = "acontainers.azurecr.io/ew/status:v2"
+            },
+            new()
+            {
+                Id = "acontainers.azurecr.io/ew/report:v1",
+                Name = "acontainers.azurecr.io/ew/report:v1"
+            },
+            new()
+            {
+                Id = "ubuntu:latest",
+                Name = "ubuntu:latest"
+            }
+        };
         return list;
     }
 }
