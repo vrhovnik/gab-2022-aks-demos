@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: store
-      image: <acr-name>.azurecr.io/newsletter-subscribe:v1
+      image: acontainers.azurecr.io/ratingsweb:v1
       ports:
         - containerPort: 80
           protocol: TCP
